@@ -1,0 +1,15 @@
+# Install SharePoint PnP PowerShell if you haven't already
+Install-Module SharePointPnPPowerShellOnline -Force -AllowClobber
+
+# Connect to your SharePoint site
+Connect-PnPOnline -Url https://your-sharepoint-site-url -UseWebLogin
+
+# Define source and destination paths
+$sourceFile = "/sites/your-site/SourceLibrary/FileName.docx"
+$destinationFile = "/sites/your-site/DestinationLibrary/FileName.docx"
+
+# Move the file with version history
+Move-PnPTenantFile -SourceUrl $sourceFile -TargetUrl $destinationFile -AllowSchemaMismatch -OverwriteIfAlreadyExists
+
+# Disconnect from SharePoint
+Disconnect-PnPOnline
