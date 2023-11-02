@@ -1,0 +1,1 @@
+Get-ChildItem -Path C:\ -Recurse -Filter *charl*.vsdx -File | Format-Table Name, Directory
