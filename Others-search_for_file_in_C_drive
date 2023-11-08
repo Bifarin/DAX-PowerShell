@@ -1,1 +1,4 @@
 Get-ChildItem -Path C:\ -Recurse -Filter *charl*.vsdx -File | Format-Table Name, Directory
+
+-- if the path contains spaces
+Get-ChildItem -Path C:\ -Recurse -Filter "IMMI Grant*.pdf" -File | Format-Table Name, Directory
