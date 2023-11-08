@@ -2,3 +2,28 @@ Get-ChildItem -Path C:\ -Recurse -Filter *charl*.vsdx -File | Format-Table Name,
 
 -- if the path contains spaces
 Get-ChildItem -Path C:\ -Recurse -Filter "IMMI Grant*.pdf" -File | Format-Table Name, Directory
+
+-- dealing with error (skip error)
+$files = @()
+
+Get-ChildItem -Path "C:\" -Recurse -Filter "IMMI Grant*.pdf" -File -ErrorAction SilentlyContinue | ForEach-Object {
+    $file = $_
+    try {
+        $fileInfo = $file | Select-Object Name, Directory
+        $files += $fileInfo
+    } catch {
+        # Ignore any errors and continue to the next file
+    }
+}
+
+$files | Format-Table Name, Directory
+
+--(stop at error)
+$files = @()
+try {
+    $files = Get-ChildItem -Path "C:\" -Recurse -Filter "IMMI Grant*.pdf" -File -ErrorAction Stop | Select-Object Name, Directory
+} catch {
+    Write-Host "An error occurred: $_"
+}
+
+$files | Format-Table Name, Directory
