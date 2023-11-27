@@ -2,9 +2,7 @@
 -- searching a specific directory
 ========================================================================================================================================================
 $uispyPath = "C:\Program Files (x86)\Windows Kits\10"
-
 $uispyExe = Get-ChildItem -Path $uispyPath -Recurse -Filter "UISpy.exe" -File -ErrorAction SilentlyContinue
-
 if ($uispyExe -ne $null) {
     $uispyInfo = $uispyExe | Select-Object Name, Directory
     $uispyInfo | Format-Table Name, Directory
