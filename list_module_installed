@@ -1,0 +1,1 @@
+Get-Module -ListAvailable | Where-Object { $_.Name -like '*PowerBI*' } | Select-Object Name, Version, Path
